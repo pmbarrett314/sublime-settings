@@ -1,0 +1,18 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"Anaconda",
+		"GitGutter",
+		"Package Control",
+		"requirementstxt",
+		"SideBarEnhancements",
+		"SublimeLinter",
+		"SublimeLinter-addon-black-for-flake",
+		"SublimeLinter-flake8",
+		"SublimeLinter-pep8"
+	]
+}
