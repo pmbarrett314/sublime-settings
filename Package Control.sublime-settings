@@ -5,14 +5,18 @@
 	],
 	"installed_packages":
 	[
+		"Anaconda",
 		"AutoPEP8",
 		"Diffy",
-		"Dotfiles Syntax Highlighting",
-		"HOCON Syntax Highlighting",
+		"GitGutter",
 		"MarkdownEditing",
 		"MarkdownPreview",
 		"Package Control",
-		"Print to HTML",
-		"VDF"
+		"requirementstxt",
+		"SideBarEnhancements",
+		"SublimeLinter",
+		"SublimeLinter-addon-black-for-flake",
+		"SublimeLinter-flake8",
+		"SublimeLinter-pep8"
 	]
 }
