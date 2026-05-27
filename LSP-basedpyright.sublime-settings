@@ -1,0 +1,14 @@
+{
+	"settings": {
+		"python.analysis.typeCheckingMode": "standard",
+		"python.analysis.diagnosticMode": "openFilesOnly",
+		"python.analysis.autoImportCompletions": true,
+		"basedpyright.analysis.inlayHints.variableTypes": true,
+		"basedpyright.analysis.inlayHints.functionReturnTypes": true,
+		"basedpyright.analysis.inlayHints.callArgumentNames": true,
+		"basedpyright.analysis.inlayHints.genericTypes": true
+	},
+	"disabled_capabilities": {
+		"documentFormattingProvider": true
+	}
+}
