@@ -1,0 +1,34 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"AdvancedNewFile",
+		"A File Icon",
+		"BracketHighlighter",
+		"Containerfile",
+		"CopyWithLineNumbersReloaded",
+		"Diffable",
+		"GitGutter",
+		"LSP",
+		"LSP-bash",
+		"LSP-clangd",
+		"LSP-file-watcher-chokidar",
+		"LSP-json",
+		"LSP-yaml",
+		"LSP-ruff",
+		"LSP-pyright",
+		"MarkdownEditing",
+		"OverrideAudit",
+		"Package Control",
+		"SideBarEnhancements",
+		"Svelte",
+		"Terminus",
+	],
+	"channels": [
+		"https://packages.sublimetext.io/channel.json",
+		"https://packagecontrol.github.io/channel/channel_v4.json",
+	],
+}
