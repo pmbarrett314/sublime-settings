@@ -1,0 +1,60 @@
+{
+    "shell_cmd": "python3 -u \"$file\"",
+    "file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
+    "selector": "source.python",
+    "env": {
+        "PYTHONUNBUFFERED": "1"
+    },
+    "variants": [
+        {
+            "name": "uv run",
+            "shell_cmd": "uv run python -u \"$file\""
+        },
+        {
+            "name": "pytest",
+            "shell_cmd": "uv run pytest \"$file\" -v"
+        },
+        {
+            "name": "pytest (project)",
+            "shell_cmd": "uv run pytest -v",
+            "working_dir": "$project_path"
+        },
+        {
+            "name": "uv run (Terminus)",
+            "target": "terminus_exec",
+            "cancel": "terminus_cancel_build",
+            "focus": true,
+            "auto_close": false,
+            "panel_name": "Build",
+            "cmd": [
+                "uv",
+                "run",
+                "python",
+                "-u",
+                "${file}"
+            ]
+        },
+        {
+            "name": "pytest (Terminus)",
+            "target": "terminus_exec",
+            "focus": true,
+            "auto_close": false,
+            "panel_name": "Build",
+            "working_dir": "${project_path}",
+            "cmd": [
+                "uv",
+                "run",
+                "pytest",
+                "${file}",
+                "-v"
+            ]
+        },
+        {
+            "name": "Python REPL (Terminus)",
+            "target": "terminus_open",
+            "focus": true,
+            "cwd": "${project_path}",
+            "shell_cmd": "uv run python"
+        }
+    ]
+}

@@ -1,0 +1,104 @@
+{
+    "shell_cmd": "g++ -std=c++23 -Wall -Wextra -Wpedantic -O2 -g \"$file\" -o \"${file_path}/${file_base_name}\"",
+    "file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
+    "working_dir": "${file_path}",
+    "selector": "source.c++",
+    "variants": [
+        {
+            "name": "Run",
+            "shell_cmd": "g++ -std=c++23 -Wall -Wextra -Wpedantic -O2 -g \"$file\" -o \"${file_path}/${file_base_name}\" && \"${file_path}/${file_base_name}\""
+        },
+        {
+            "name": "Debug build",
+            "shell_cmd": "g++ -std=c++23 -Wall -Wextra -Wpedantic -O0 -g3 -fsanitize=address,undefined \"$file\" -o \"${file_path}/${file_base_name}\""
+        },
+        {
+            "name": "CMake configure",
+            "shell_cmd": "cmake -S . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=Debug",
+            "working_dir": "${project_path}"
+        },
+        {
+            "name": "CMake build",
+            "shell_cmd": "cmake --build build -j",
+            "working_dir": "${project_path}"
+        },
+        {
+            "name": "CMake test",
+            "shell_cmd": "ctest --test-dir build --output-on-failure",
+            "working_dir": "${project_path}"
+        },
+        {
+            "name": "Clean",
+            "shell_cmd": "rm -rf build \"${file_path}/${file_base_name}\""
+        },
+        {
+            "name": "Run (Terminus)",
+            "target": "terminus_exec",
+            "cancel": "terminus_cancel_build",
+            "focus": true,
+            "auto_close": false,
+            "panel_name": "Build",
+            "cmd": [
+                "bash",
+                "-c",
+                "g++ -std=c++23 -Wall -Wextra -Wpedantic -O2 -g \"$0\" -o \"$1\" && \"$1\"",
+                "${file}",
+                "${file_path}/${file_base_name}"
+            ]
+        },
+        {
+            "name": "Run with AddressSanitizer (Terminus)",
+            "target": "terminus_exec",
+            "cancel": "terminus_cancel_build",
+            "focus": true,
+            "auto_close": false,
+            "panel_name": "Build",
+            "cmd": [
+                "bash",
+                "-c",
+                "g++ -std=c++23 -Wall -Wextra -Wpedantic -O0 -g3 -fsanitize=address,undefined \"$0\" -o \"$1\" && \"$1\"",
+                "${file}",
+                "${file_path}/${file_base_name}"
+            ]
+        },
+        {
+            "name": "CMake build + test (Terminus)",
+            "target": "terminus_exec",
+            "cancel": "terminus_cancel_build",
+            "focus": true,
+            "auto_close": false,
+            "panel_name": "Build",
+            "working_dir": "${project_path}",
+            "cmd": [
+                "bash",
+                "-c",
+                "cmake --build build -j && ctest --test-dir build --output-on-failure"
+            ]
+        },
+        {
+            "name": "GDB",
+            "target": "terminus_exec",
+            "focus": true,
+            "auto_close": false,
+            "panel_name": "Debug",
+            "working_dir": "${file_path}",
+            "cmd": [
+                "gdb",
+                "-q",
+                "${file_path}/${file_base_name}"
+            ]
+        },
+        {
+            "name": "LLDB",
+            "target": "terminus_exec",
+            "focus": true,
+            "auto_close": false,
+            "panel_name": "Debug",
+            "working_dir": "${file_path}",
+            "cmd": [
+                "lldb",
+                "${file_path}/${file_base_name}"
+            ]
+        }
+    ]
+}
